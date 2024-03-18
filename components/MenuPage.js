@@ -19,6 +19,7 @@ export class MenuPage extends HTMLElement {
     this.root.appendChild(content);
 
     window.addEventListener("appmenuchange", () => this.render());
+    this.render();
   }
 
   render() {

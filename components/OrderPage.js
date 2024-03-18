@@ -29,6 +29,7 @@ export class OrderPage extends HTMLElement {
   }
 
   setFormBindings(form) {
+    if (!form) return null;
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       alert(
