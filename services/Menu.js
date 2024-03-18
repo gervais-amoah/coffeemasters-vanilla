@@ -4,3 +4,19 @@ export async function loadData() {
   console.log("fetching data...");
   app.store.menu = await API.fetchMenu();
 }
+
+export async function getProductById(id) {
+  if (app.store.menu === null) {
+    await loadData();
+  }
+
+  console.log("app.store.menu =>", app.store.menu);
+
+  for (let c of app.store.menu) {
+    for (let p of c.products) {
+      if (p.id == id) return p;
+    }
+  }
+
+  return null;
+}

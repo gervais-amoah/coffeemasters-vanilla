@@ -16,8 +16,6 @@ const Router = {
     Router.go(location.pathname);
   },
   go: (path, addToHistory = true) => {
-    console.log(`go to ${path}`);
-
     if (addToHistory) history.pushState({ path }, "", path);
 
     let pageElement = null;
@@ -30,10 +28,11 @@ const Router = {
         pageElement = document.createElement("order-page");
         break;
       default:
-        if (path.startWith("/product-")) {
-          pageElement = document.createElement("h1");
+        if (path.startsWith("/product-")) {
+          pageElement = document.createElement("details-page");
           // const paramId = path.substring(path.lastIndexOf("-") + 1)
-          const paramId = path.split("/product-")[0];
+          const paramId = path.split("/product-")[1];
+          console.log(paramId);
           pageElement.dataset.id = paramId;
         }
     }
