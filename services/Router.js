@@ -6,6 +6,14 @@ const Router = {
         Router.go(a.getAttribute("href"));
       });
     });
+
+    //  Event handler for the url change
+    window.addEventListener("popstate", (evt) => {
+      Router.go(evt.state.path, false);
+    });
+
+    //  Check the initial url
+    Router.go(location.pathname);
   },
   go: (path, addToHistory = true) => {
     console.log(`go to ${path}`);
@@ -16,13 +24,18 @@ const Router = {
 
     switch (path) {
       case "/":
-        pageElement = document.createElement("h1");
-        pageElement.textContent = "Menu";
+        pageElement = document.createElement("menu-page");
         break;
       case "/order":
-        pageElement = document.createElement("h1");
-        pageElement.textContent = "Order";
+        pageElement = document.createElement("order-page");
         break;
+      default:
+        if (path.startWith("/product-")) {
+          pageElement = document.createElement("h1");
+          // const paramId = path.substring(path.lastIndexOf("-") + 1)
+          const paramId = path.split("/product-")[0];
+          pageElement.dataset.id = paramId;
+        }
     }
     if (pageElement) {
       const main = document.querySelector("main");
