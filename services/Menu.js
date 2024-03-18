@@ -10,8 +10,6 @@ export async function getProductById(id) {
     await loadData();
   }
 
-  console.log("app.store.menu =>", app.store.menu);
-
   for (let c of app.store.menu) {
     for (let p of c.products) {
       if (p.id == id) return p;
