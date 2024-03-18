@@ -9,6 +9,7 @@ const Router = {
 
     //  Event handler for the url change
     window.addEventListener("popstate", (evt) => {
+      console.log(evt);
       Router.go(evt.state.path, false);
     });
 
